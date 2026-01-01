@@ -5,8 +5,8 @@ CLUSTER_NAME="lab"
 CORE_DNS_CONFIG_PATCH=$(mktemp)
 RESOLVER_FILE="/etc/resolver/lab-local.kind"
 
-echo "=== 1. Создаём kind cluster ==="
-kind cluster create --name $CLUSTER_NAME --config ./source/cluster-init.yml
+echo "=== 1. creating kind cluster ==="
+kind create cluster --name $CLUSTER_NAME --config ./source/cluster-init.yml
 
 echo "=== 2. patch CoreDNS for lab-local.kind ==="
 
