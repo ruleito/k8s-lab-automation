@@ -42,28 +42,21 @@ echo "DNS ready on host --> *.lab-local.minikube via $MINIKUBE_IP"
 
 echo "=== 4. configuring in-cluster CoreDNS for local domain ==="
 
-# 1. Выгрузить Corefile в переменную
 COREFILE=$(kubectl -n kube-system get configmap coredns -o jsonpath='{.data.Corefile}')
 
-# 2. Проверить, нет ли уже блока для lab-local.minikube (чтобы не дублировать)
 if ! echo "$COREFILE" | grep -q 'lab-local\.minikube'; then
-  # 3. Добавить блок в конец (перед закрывающей фигурной скобкой `}` сервера `.:53`, или как отдельный блок)
-  # Важно: блок должен быть *отдельным*, как у вас — это корректно.
   NEW_BLOCK="lab-local.minikube:53 {
     errors
     cache 30
     forward . $MINIKUBE_IP
 }"
 
-  # Добавляем новый блок в конец Corefile (после основного блока)
   COREFILE="$COREFILE
 $NEW_BLOCK"
 fi
 
-# 4. Применить обновлённый Corefile
 kubectl -n kube-system create configmap coredns --from-literal=Corefile="$COREFILE" -o yaml --dry-run=client | kubectl apply -f -
 
-# 5. Рестарт coredns
 kubectl -n kube-system rollout restart deployment/coredns
 kubectl -n kube-system rollout status deployment/coredns --timeout=120s
 
