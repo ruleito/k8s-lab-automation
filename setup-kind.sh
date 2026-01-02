@@ -6,9 +6,8 @@ INGRESS_NAMESPACE="ingress-nginx"
 
 echo "=== 0. checking dependencies ==="
 
-# Проверка minikube
 if ! command -v minikube &>/dev/null; then
-  echo "minikube не найден. Скачиваем и устанавливаем..."
+  echo "minikube not find... installing"
   curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.35.0/minikube-darwin-arm64
   chmod +x minikube
   sudo mv minikube /usr/local/bin/
