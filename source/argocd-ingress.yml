@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: argocd.lab-local.kind
+  - host: argocd.lab-local.minikube
     http:
       paths:
       - path: /
