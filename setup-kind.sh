@@ -13,6 +13,8 @@ if ! command -v minikube &>/dev/null; then
   curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.37.0/minikube-darwin-arm64
   chmod +x minikube
   sudo mv minikube /usr/local/bin/
+  curl -fsSL https://github.com/minikube-machine/vmnet-helper/releases/latest/download/install.sh | bash
+  brew upgrade vfkit
 fi
 
 echo "=== 1. starting minikube cluster ==="
