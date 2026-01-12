@@ -10,7 +10,7 @@ echo "=== 0. checking dependencies ==="
 if ! command -v minikube &>/dev/null; then
   mkdir -p /usr/local/bin
   echo "minikube not find... installing"
-  curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.35.0/minikube-darwin-arm64
+  curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.37.0/minikube-darwin-arm64
   chmod +x minikube
   sudo mv minikube /usr/local/bin/
 fi
