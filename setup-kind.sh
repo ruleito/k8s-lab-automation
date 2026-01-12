@@ -7,7 +7,7 @@ INGRESS_NAMESPACE="ingress-nginx"
 echo "=== 0. checking dependencies ==="
 
 # Проверка minikube
-if  command -v minikube &>/dev/null; then
+if ! command -v minikube &>/dev/null; then
   sudo mkdir -p /usr/local/bin
   export PATH="/usr/local/bin:$PATH"
   echo "minikube not find... installing"
