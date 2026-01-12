@@ -9,6 +9,7 @@ echo "=== 0. checking dependencies ==="
 # Проверка minikube
 if ! command -v minikube &>/dev/null; then
   echo "minikube не найден. Скачиваем и устанавливаем..."
+  mkdir -p /usr/local/bin
   curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.35.0/minikube-darwin-arm64
   chmod +x minikube
   sudo mv minikube /usr/local/bin/
