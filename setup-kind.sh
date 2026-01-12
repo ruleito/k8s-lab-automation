@@ -7,14 +7,14 @@ INGRESS_NAMESPACE="ingress-nginx"
 echo "=== 0. checking dependencies ==="
 
 # Проверка minikube
-if ! command -v minikube &>/dev/null; then
-  mkdir -p /usr/local/bin
+if  command -v minikube &>/dev/null; then
+  sudo mkdir -p /usr/local/bin
   echo "minikube not find... installing"
   curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.37.0/minikube-darwin-arm64
   chmod +x minikube
   sudo mv minikube /usr/local/bin/
-  curl -fsSL https://github.com/minikube-machine/vmnet-helper/releases/latest/download/install.sh | bash
-  brew upgrade vfkit
+#  curl -fsSL https://github.com/minikube-machine/vmnet-helper/releases/latest/download/install.sh | bash
+#  brew upgrade vfkit
 fi
 
 echo "=== 1. starting minikube cluster ==="
