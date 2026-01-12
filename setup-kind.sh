@@ -19,7 +19,7 @@ if  command -v minikube &>/dev/null; then
 fi
 
 echo "=== 1. starting minikube cluster ==="
-minikube start \
+/usr/local/bin/minikube start \
   --driver=vfkit \
   --network=vmnet-shared \
   --cpus=2 \
